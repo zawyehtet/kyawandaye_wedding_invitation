@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#FFFDF7;--gold:#D4AF77;--blush:#F5E6E8;--sage:#A8B5A0;--brown:#40352F;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif;--r:18px;--shadow:0 10px 30px rgba(64,53,47,.12)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font:300 1.05rem/1.7 var(--sans);color:var(--brown);background:var(--ivory);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1100px,100% - 2.5rem);margin:auto}.wrap--narrow{width:min(640px,100% - 2.5rem)}
+.center{text-align:center}.muted{opacity:.7}
+.sec{padding:5rem 0}.sec--blush{background:var(--blush)}.sec--sage{background:color-mix(in srgb,var(--sage) 35%,var(--ivory))}
+.sec--dark{background:var(--brown);color:var(--ivory)}
+.title{font:400 clamp(2rem,6vw,3rem)/1.2 var(--serif);text-align:center;margin-bottom:2.5rem;color:inherit}
+.lead,.names{font:italic 400 clamp(1.4rem,4.5vw,2rem)/1.5 var(--serif)}
+.names{font-style:normal;margin:1rem 0}.when{margin-top:1.5rem;font-weight:400}
+.divider{color:var(--gold);font-size:1.6rem;margin:1.5rem 0}
+.btn{display:inline-block;min-height:48px;padding:.8rem 2rem;border:1px solid var(--gold);background:var(--gold);color:var(--brown);font:500 1rem var(--sans);border-radius:999px;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
+.btn:hover{background:transparent;color:inherit}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:.6rem 1.25rem;background:rgba(255,253,247,.92);backdrop-filter:blur(8px)}
+.nav__brand{font:600 1.4rem var(--serif);text-decoration:none}
+.nav__toggle{background:none;border:0;font-size:1.6rem;min-width:48px;min-height:48px;cursor:pointer}
+.nav__links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;background:var(--ivory);padding:1rem 1.25rem;box-shadow:var(--shadow)}
+.nav__links.open{display:flex}.nav__links a{padding:.6rem 0;text-decoration:none}
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;color:var(--ivory);background:linear-gradient(160deg,#6b5a4e,#40352F 60%,#a8957a);overflow:hidden}
+.hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0;background:rgba(40,30,25,.45)}
+.hero__inner{position:relative;padding:5rem 1.25rem;animation:rise 1.4s ease both}
+.hero__sub{font:italic 1.25rem var(--serif);max-width:28ch;margin:0 auto 1.5rem}
+.hero__names{font:400 clamp(3rem,13vw,7rem)/1 var(--serif);display:flex;flex-direction:column;align-items:center}
+.hero__names em{color:var(--gold);font-size:.5em;margin:.1em 0}
+.hero__date{margin:1.5rem 0 2rem;letter-spacing:.08em}
+.scroll{position:absolute;bottom:1.5rem;left:50%;width:24px;height:40px;border:2px solid var(--ivory);border-radius:14px;transform:translateX(-50%)}
+.scroll span{display:block;width:4px;height:8px;margin:6px auto;background:var(--gold);border-radius:2px;animation:dot 1.6s infinite}
+@keyframes dot{50%{transform:translateY(12px);opacity:.3}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+/* cards */
+.grid2,.grid3{display:grid;gap:1.5rem}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;text-align:center;padding-bottom:1.5rem;transition:transform .4s}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;margin-bottom:1rem}
+img.missing,.ph{background:linear-gradient(135deg,var(--blush),var(--sage));min-height:200px}
+.card h3,.ev h3{font:600 1.6rem var(--serif)}.card p{padding:0 1.25rem}
+.ev{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:1.75rem;text-align:center}
+.ev .ico{font-size:2rem;color:var(--gold)}.ev .t{color:var(--gold);font-weight:500}
+/* timeline */
+.timeline{list-style:none;padding:0 0 0 1.75rem;border-left:2px solid var(--gold)}
+.timeline li{position:relative;padding-bottom:2rem}
+.timeline li::before{content:"";position:absolute;left:calc(-1.75rem - 7px);top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.timeline time{font-weight:500}.timeline h3{font:600 1.5rem var(--serif)}
+/* countdown */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;max-width:640px;margin:auto}
+.count div{border:1px solid var(--gold);border-radius:var(--r);padding:1rem .25rem}
+.count b{display:block;font:400 clamp(2rem,9vw,3.5rem)/1 var(--serif);color:var(--gold)}
+.count p.msg{grid-column:1/-1;font:italic 1.8rem var(--serif)}
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.gallery button{border:0;padding:0;border-radius:12px;overflow:hidden;cursor:pointer;aspect-ratio:1;background:linear-gradient(135deg,var(--ivory),var(--sage))}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery button:hover img{transform:scale(1.07)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(20,15,12,.94);display:flex;align-items:center;justify-content:center}
+.lightbox[hidden]{display:none}.lightbox img{max-height:85vh;max-width:92vw;border-radius:8px;touch-action:pan-y}
+.lb__btn{position:absolute;background:none;border:0;color:#fff;font-size:2.5rem;min-width:48px;min-height:48px;cursor:pointer}
+.lb__close{top:.5rem;right:.75rem}.lb__prev{left:.25rem}.lb__next{right:.25rem}
+/* venue/forms */
+iframe{width:100%;height:300px;border:0;border-radius:var(--r);margin:1.5rem 0;box-shadow:var(--shadow)}
+.form{display:grid;gap:.5rem}
+.form label,.form legend{display:grid;gap:.25rem;font-weight:400}
+input,textarea{font:inherit;padding:.75rem 1rem;border:1px solid rgba(64,53,47,.3);border-radius:10px;background:#fff;color:inherit;width:100%}
+fieldset{border:0;padding:0}.radio{display:flex!important;gap:.5rem;align-items:center;padding:.4rem 0}.radio input{width:auto}
+.err{color:#9b2c2c;font-size:.9rem;min-height:0}.note{font-weight:500}
+.form .btn{justify-self:start;margin-top:.5rem}
+.wishes{list-style:none;padding:0;margin-top:2rem;display:grid;gap:1rem}
+.wishes li{background:var(--blush);border-radius:var(--r);padding:1rem 1.25rem}.wishes b{font:600 1.2rem var(--serif)}
+.footer{padding:4rem 1.25rem 6rem;background:var(--blush)}
+/* music */
+.music{position:fixed;right:1rem;bottom:1rem;z-index:30;display:flex;gap:.5rem;align-items:center;min-height:48px;padding:.5rem 1rem;border:1px solid var(--gold);border-radius:999px;background:var(--ivory);color:var(--brown);font:400 .85rem var(--sans);cursor:pointer;box-shadow:var(--shadow)}
+.music[aria-pressed=true] #musicIcon{animation:dot 1.2s infinite}
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s,transform .9s}
+.js .reveal.in{opacity:1;transform:none}
+@media(min-width:768px){
+ .nav__toggle{display:none}.nav__links{display:flex;position:static;flex-direction:row;gap:1.25rem;padding:0;box-shadow:none;background:none}
+ .grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.gallery{grid-template-columns:repeat(3,1fr)}
+ .sec{padding:7rem 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__brand" data-bind="initials"></a>
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">☰</button>
+  <nav class="nav__links" id="navLinks">
+    <a href="#invitation">Invitation</a><a href="#couple">Couple</a><a href="#story">Story</a>
+    <a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#venue">Venue</a><a href="#rsvp">RSVP</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <img class="hero__bg" src="assets/images/wedding-cover.jpg" alt="" onerror="this.remove()">
+  <div class="hero__inner">
+    <p class="hero__sub">Together with our families, we invite you to celebrate our love.</p>
+    <h1 class="hero__names"><span data-bind="groom"></span><em>&amp;</em><span data-bind="bride"></span></h1>
+    <p class="hero__date" data-bind="dateLong"></p>
+    <a href="#invitation" class="btn">Open Invitation</a>
+  </div>
+  <a href="#invitation" class="scroll" aria-label="Scroll down"><span></span></a>
+</section>
+
+<section class="sec sec--blush" id="invitation">
+  <div class="wrap wrap--narrow center reveal">
+    <p class="lead">With love and joy in our hearts,<br>we invite you to join us as we celebrate<br>the beginning of our forever.</p>
+    <div class="divider" aria-hidden="true">❦</div>
+    <h2 class="names"><span data-bind="groomFull"></span><br>and<br><span data-bind="brideFull"></span></h2>
+    <p class="muted" data-bind="parents"></p>
+    <p class="when"><span data-bind="dateLong"></span><br><span data-bind="time"></span> · <span data-bind="venue"></span></p>
+  </div>
+</section>
+
+<section class="sec" id="couple">
+  <div class="wrap">
+    <h2 class="title">The Couple</h2>
+    <div class="grid2">
+      <article class="card reveal"><img src="assets/images/groom.jpg" alt="Groom" onerror="this.classList.add('missing')">
+        <h3 data-bind="groomFull"></h3><p data-bind="groomBio"></p></article>
+      <article class="card reveal"><img src="assets/images/bride.jpg" alt="Bride" onerror="this.classList.add('missing')">
+        <h3 data-bind="brideFull"></h3><p data-bind="brideBio"></p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--sage" id="story">
+  <div class="wrap wrap--narrow">
+    <h2 class="title">Our Love Story</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</section>
+
+<section class="sec sec--dark center" id="countdown">
+  <div class="wrap">
+    <h2 class="title">Counting Down</h2>
+    <div class="count" id="countdownBox" role="timer" aria-live="off"></div>
+  </div>
+</section>
+
+<section class="sec" id="events">
+  <div class="wrap">
+    <h2 class="title">Wedding Day</h2>
+    <div class="grid3" id="eventList"></div>
+  </div>
+</section>
+
+<section class="sec sec--blush" id="gallery">
+  <div class="wrap">
+    <h2 class="title">Gallery</h2>
+    <div class="gallery" id="galleryGrid"></div>
+  </div>
+</section>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb__btn lb__close" data-lb="close" aria-label="Close">✕</button>
+  <button class="lb__btn lb__prev" data-lb="prev" aria-label="Previous photo">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb__btn lb__next" data-lb="next" aria-label="Next photo">›</button>
+</div>
+
+<section class="sec" id="venue">
+  <div class="wrap wrap--narrow center">
+    <h2 class="title">Venue</h2>
+    <p class="names"><span data-bind="venue"></span></p>
+    <p data-bind="address"></p>
+    <p class="muted"><span data-bind="dateLong"></span> · <span data-bind="time"></span></p>
+    <iframe id="mapFrame" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <a class="btn" id="directions" target="_blank" rel="noopener">Get Directions</a>
+  </div>
+</section>
+
+<section class="sec sec--sage" id="rsvp">
+  <div class="wrap wrap--narrow">
+    <h2 class="title">RSVP</h2>
+    <form id="rsvpForm" class="form" novalidate>
+      <label>Full name *<input name="name" type="text" required autocomplete="name"></label>
+      <p class="err" data-err="name"></p>
+      <label>Email<input name="email" type="email" autocomplete="email"></label>
+      <p class="err" data-err="email"></p>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+      <label>Number of guests *<input name="guests" type="number" min="1" max="10" value="1" required></label>
+      <p class="err" data-err="guests"></p>
+      <fieldset><legend>Will you attend? *</legend>
+        <label class="radio"><input type="radio" name="attend" value="yes"> Joyfully accept</label>
+        <label class="radio"><input type="radio" name="attend" value="no"> Regretfully decline</label></fieldset>
+      <p class="err" data-err="attend"></p>
+      <label>Dietary preferences<input name="diet" type="text"></label>
+      <label>Message to the couple<textarea name="message" rows="3"></textarea></label>
+      <button class="btn" type="submit">Send RSVP</button>
+      <p class="note" id="rsvpNote" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="wishes">
+  <div class="wrap wrap--narrow">
+    <h2 class="title">Guest Wishes</h2>
+    <p class="muted center">Wishes are saved in this browser only (localStorage), not shared between visitors.</p>
+    <form id="wishForm" class="form" novalidate>
+      <label>Your name<input name="name" type="text" required></label>
+      <label>Your wish<textarea name="message" rows="3" maxlength="300" required></textarea></label>
+      <p class="err" id="wishErr"></p>
+      <button class="btn" type="submit">Send wish</button>
+    </form>
+    <ul class="wishes" id="wishList"></ul>
+  </div>
+</section>
+
+<footer class="footer center">
+  <div class="divider" aria-hidden="true">♥</div>
+  <p class="names"><span data-bind="groom"></span> &amp; <span data-bind="bride"></span></p>
+  <p data-bind="dateLong"></p>
+  <p>Made with Love for Our Special Day.</p>
+  <p class="muted">© <span id="year"></span> All rights reserved.</p>
+</footer>
+
+<button class="music" id="musicBtn" aria-pressed="false" aria-label="Play music"><span id="musicIcon">♪</span><span id="musicState">Music off</span></button>
+<audio id="audio" loop preload="none"></audio>
+<script>
+(() => {
+  'use strict';
+  /* ========== CONFIG: edit everything here ========== */
+  const CONFIG = {
+    groom: 'Daniel', bride: 'Sophia',
+    groomFull: 'Daniel James Carter', brideFull: 'Sophia Marie Bennett',
+    groomBio: 'A gentle storyteller who believes the best days begin with coffee and laughter.',
+    brideBio: 'A warm-hearted dreamer who turns every ordinary day into something special.',
+    parents: 'Son of Mr. & Mrs. Carter · Daughter of Mr. & Mrs. Bennett',
+    weddingDate: '2027-06-12T16:00:00', // ISO format, local time
+    venue: 'The Rose Garden Estate',
+    address: '123 Garden Lane, Your City, Country',
+    mapQuery: '', // optional: custom search text; defaults to venue + address
+    music: 'assets/audio/wedding-music.mp3',
+    story: [
+      { date: 'June 2019', title: 'The First Meeting', text: 'A rainy afternoon, one shared umbrella.', img: '' },
+      { date: 'February 2020', title: 'Our First Date', text: 'Dinner that lasted until the restaurant closed.', img: '' },
+      { date: 'December 2025', title: 'The Proposal', text: 'Under the lights, with a very nervous question.', img: '' },
+      { date: 'March 2026', title: 'Our Engagement', text: 'Two families, one big celebration.', img: '' },
+      { date: 'June 2027', title: 'The Wedding Day', text: 'The beginning of our forever.', img: '' }
+    ],
+    events: [
+      { icon: '💍', name: 'Wedding Ceremony', time: '4:00 PM', place: 'Garden Altar', text: 'Exchange of vows.' },
+      { icon: '📷', name: 'Couple Photography', time: '5:00 PM', place: 'Rose Terrace', text: 'Family and couple portraits.' },
+      { icon: '🥂', name: 'Reception', time: '6:00 PM', place: 'Main Hall', text: 'Welcome drinks and toasts.' },
+      { icon: '🍽️', name: 'Dinner', time: '7:00 PM', place: 'Main Hall', text: 'A seated three-course dinner.' },
+      { icon: '🎶', name: 'Celebration', time: '9:00 PM', place: 'Dance Floor', text: 'Music and dancing.' }
+    ],
+    gallery: Array.from({ length: 6 }, (_, i) => `assets/images/gallery/photo-${i + 1}.jpg`)
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } }
+  };
+  const weddingDate = new Date(CONFIG.weddingDate);
+  const validDate = !isNaN(weddingDate);
+
+  function fillContent() {
+    const dateLong = validDate ? weddingDate.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Date to be announced';
+    const time = validDate ? weddingDate.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) : '';
+    const v = { ...CONFIG, dateLong, time, initials: CONFIG.groom[0] + '&' + CONFIG.bride[0] };
+    document.querySelectorAll('[data-bind]').forEach(n => { n.textContent = v[n.dataset.bind] ?? ''; });
+    document.title = `${CONFIG.groom} & ${CONFIG.bride} — Wedding Invitation`;
+    $('#year').textContent = new Date().getFullYear();
+  }
+
+  function renderLists() {
+    $('#timeline').append(...CONFIG.story.map(s => el('li', 'reveal',
+      `<time>${esc(s.date)}</time><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p>` +
+      (s.img ? `<img src="${esc(s.img)}" alt="${esc(s.title)}" loading="lazy" onerror="this.remove()">` : ''))));
+    $('#eventList').append(...CONFIG.events.map(e => el('article', 'ev reveal',
+      `<div class="ico" aria-hidden="true">${e.icon}</div><h3>${esc(e.name)}</h3><p class="t">${esc(e.time)}</p><p>${esc(e.place)}</p><p class="muted">${esc(e.text)}</p>`)));
+  }
+
+  function setupNav() {
+    const btn = $('#navToggle'), links = $('#navLinks');
+    btn.addEventListener('click', () => { const o = links.classList.toggle('open'); btn.setAttribute('aria-expanded', o); });
+    links.addEventListener('click', e => { if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); } });
+  }
+
+  function setupCountdown() {
+    const box = $('#countdownBox');
+    if (!validDate) { box.innerHTML = '<p class="msg">Date to be announced</p>'; return; }
+    const cell = (n, l) => `<div><b>${String(n).padStart(2, '0')}</b>${l}</div>`;
+    const tick = () => {
+      const diff = weddingDate - Date.now();
+      if (diff <= 0) {
+        const sameDay = new Date().toDateString() === weddingDate.toDateString();
+        box.innerHTML = `<p class="msg">${sameDay ? 'Today Is Our Special Day!' : 'Thank you for celebrating with us.'}</p>`;
+        return clearInterval(timer);
+      }
+      const s = Math.floor(diff / 1000);
+      box.innerHTML = cell(Math.floor(s / 86400), 'Days') + cell(Math.floor(s % 86400 / 3600), 'Hours') + cell(Math.floor(s % 3600 / 60), 'Minutes') + cell(s % 60, 'Seconds');
+    };
+    const timer = setInterval(tick, 1000); tick();
+  }
+
+  function setupGallery() {
+    const grid = $('#galleryGrid'), lb = $('#lightbox'), img = $('#lbImg');
+    let idx = 0, opener = null;
+    CONFIG.gallery.forEach((src, i) => {
+      const b = el('button', '', `<img src="${esc(src)}" alt="Wedding photo ${i + 1}" loading="lazy">`);
+      b.firstChild.onerror = function () { this.style.visibility = 'hidden'; };
+      b.addEventListener('click', () => open(i, b));
+      grid.append(b);
+    });
+    const show = i => { idx = (i + CONFIG.gallery.length) % CONFIG.gallery.length; img.src = CONFIG.gallery[idx]; img.alt = `Wedding photo ${idx + 1}`; };
+    function open(i, b) { opener = b; show(i); lb.hidden = false; document.body.style.overflow = 'hidden'; $('.lb__close').focus(); }
+    function close() { lb.hidden = true; document.body.style.overflow = ''; opener && opener.focus(); }
+    lb.addEventListener('click', e => {
+      const a = e.target.dataset.lb;
+      if (a === 'close' || e.target === lb) close(); else if (a === 'prev') show(idx - 1); else if (a === 'next') show(idx + 1);
+    });
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') show(idx - 1); else if (e.key === 'ArrowRight') show(idx + 1);
+    });
+    let x0 = null;
+    lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    });
+  }
+
+  function setupMap() {
+    const q = encodeURIComponent(CONFIG.mapQuery || `${CONFIG.venue}, ${CONFIG.address}`);
+    $('#mapFrame').src = `https://www.google.com/maps?q=${q}&output=embed`;
+    $('#directions').href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+  }
+
+  function setupRsvp() {
+    const form = $('#rsvpForm'), note = $('#rsvpNote');
+    const setErr = (k, m) => { const p = $(`[data-err="${k}"]`, form); p.textContent = m; };
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(form));
+      const errs = {};
+      if (!d.name?.trim()) errs.name = 'Please enter your full name.';
+      if (d.email && !/^\S+@\S+\.\S+$/.test(d.email)) errs.email = 'Enter a valid email address, or leave it blank.';
+      const g = Number(d.guests); if (!Number.isInteger(g) || g < 1 || g > 10) errs.guests = 'Enter a number of guests from 1 to 10.';
+      if (!d.attend) errs.attend = 'Please choose whether you will attend.';
+      ['name', 'email', 'guests', 'attend'].forEach(k => setErr(k, errs[k] || ''));
+      if (Object.keys(errs).length) { note.textContent = ''; form.querySelector(`[name="${Object.keys(errs)[0]}"]`)?.focus(); return; }
+      const list = store.get('rsvps');
+      const key = (d.email || d.name).trim().toLowerCase();
+      if (list.some(r => r.key === key)) { note.textContent = 'This guest has already replied from this browser.'; return; }
+      list.push({ key, ...d, at: new Date().toISOString() });
+      note.textContent = store.set('rsvps', list) ? 'Thank you! Your RSVP is saved in this browser (demo only).' : 'Could not save: browser storage is unavailable.';
+      if (store.get('rsvps').length === list.length) form.reset();
+    });
+  }
+
+  function setupWishes() {
+    const form = $('#wishForm'), ul = $('#wishList'), err = $('#wishErr');
+    const render = () => { ul.innerHTML = store.get('wishes').map(w => `<li><b>${esc(w.name)}</b><p>${esc(w.message)}</p></li>`).join(''); };
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = form.name.value.trim(), message = form.message.value.trim();
+      if (!name || !message) { err.textContent = 'Please add your name and a message.'; return; }
+      err.textContent = '';
+      const list = store.get('wishes'); list.unshift({ name, message });
+      if (!store.set('wishes', list)) err.textContent = 'Could not save: browser storage is unavailable.';
+      form.reset(); render();
+    });
+    render();
+  }
+
+  function setupMusic() {
+    const audio = $('#audio'), btn = $('#musicBtn');
+    audio.src = CONFIG.music;
+    const state = on => { btn.setAttribute('aria-pressed', on); btn.setAttribute('aria-label', on ? 'Pause music' : 'Play music'); $('#musicState').textContent = on ? 'Music on' : 'Music off'; };
+    btn.addEventListener('click', async () => {
+      if (audio.paused) { try { await audio.play(); state(true); } catch { $('#musicState').textContent = 'Music unavailable'; } }
+      else { audio.pause(); state(false); }
+    });
+  }
+
+  function setupReveal() {
+    const items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('js');
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+    items.forEach(i => io.observe(i));
+  }
+
+  fillContent(); renderLists(); setupNav(); setupCountdown(); setupGallery();
+  setupMap(); setupRsvp(); setupWishes(); setupMusic(); setupReveal();
+})();
+</script>
+</body>
+</html>
